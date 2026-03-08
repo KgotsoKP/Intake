@@ -4,6 +4,7 @@
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 ![XML](https://img.shields.io/badge/XML-E34F26?style=for-the-badge&logo=w3c&logoColor=white)
+![Time Taken](https://img.shields.io/badge/Time%20Taken-~1.5%20days-blue?style=for-the-badge&logo=clockify&logoColor=white)
 
 Test 1 : A  simple Blazor application to capture,search, list, edit, and delete user information. User data (name, surname, cellphone number) is persisted to an XML file.
 
