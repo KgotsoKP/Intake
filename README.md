@@ -9,6 +9,9 @@ Test 1 : A  simple Blazor application to capture,search, list, edit, and delete 
 
 ## Demo
 
+![e4-intake-demo](https://github.com/user-attachments/assets/6f1c8d9d-2d66-4d95-831c-e83b9ca0108b)
+
+
 **How it Works:**
 
 1. **Search** — Type a keyword into the search bar and hit search. The user list filters to show matching results.
