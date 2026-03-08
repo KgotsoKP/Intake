@@ -1,7 +1,74 @@
 ﻿@page "/"
+@using Intake.Models
+@using Intake.Services
+@rendermode InteractiveServer
+@inject IUserService UserService
+@using Blazor.Sonner.Services
+@inject ToastService Toast
 
-<PageTitle>Home</PageTitle>
+<PageTitle>e4 - Intake</PageTitle>
 
-<h1>Hello, world!</h1>
+<section class="max-w-3xl mx-auto flex flex-col justify-center h-full">
+    <div class="space-y-4">
+        <SearchHeader
+            OpenAddUserDialog="@Open"
+            OnSearchClicked="SearchUsers"
+            OnSearchCleared="FetchUsers"
+        />
+        <UserTable
+            OpenEditUserDialog="EditUser"
+            DeleteUserAction="DeleteUser"
+            Users="@users"
+        />
+    </div>
+</section>
 
-Welcome to your new app.
+<EditUserDialog
+    UserId="@userId"
+    IsVisible="@isVisible"
+    RefetchUsers="@FetchUsers"
+    OnClose="HandleClose"
+/>
+
+@code{
+    private bool isVisible = false;
+    private int? userId;
+    private List<User?> users;
+
+    private void Open() => isVisible = true;
+
+    protected override async Task OnInitializedAsync() => await FetchUsers();
+    private async Task FetchUsers() => users = await UserService.GetUsers();
+
+    private void EditUser(int id)
+    {
+        userId = id;
+        Open();
+    }
+
+    private async Task SearchUsers(string searchText)
+    {
+        users = await UserService.SearchUsers(searchText);
+    }
+
+    private async Task DeleteUser(int id)
+    {
+        var result = await UserService.DeleteUser(id);
+
+        if (result.Value)
+        {
+            users = await UserService.GetUsers();
+            Toast.Success("User deleted successfully", opts => { opts.Description = "The user has been removed."; });
+        }
+        else
+        {
+            Toast.Error("Deletion failed", opts => { opts.Description = "Something went wrong. Please try again later."; });
+        }
+    }
+
+    private void HandleClose()
+    {
+        isVisible = false;
+        userId = null;
+    }
+}
