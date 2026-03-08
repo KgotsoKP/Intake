@@ -1,23 +1,5 @@
 <Users>
   <User>
-    <Id>2</Id>
-    <Name>Nalejkxghxng</Name>
-    <Surname>Dlamini</Surname>
-    <CellphoneNumber>0823456789</CellphoneNumber>
-  </User>
-  <User>
-    <Id>6</Id>
-    <Name>Pietersfgjhg</Name>
-    <Surname>Botha</Surname>
-    <CellphoneNumber>0819988776</CellphoneNumber>
-  </User>
-  <User>
-    <Id>26</Id>
-    <Name>Kgotso</Name>
-    <Surname>Phiri</Surname>
-    <CellphoneNumber>0670908230</CellphoneNumber>
-  </User>
-  <User>
     <Id>46</Id>
     <Name>Kgotso</Name>
     <Surname>Molefe</Surname>
@@ -37,8 +19,20 @@
   </User>
   <User>
     <Id>10</Id>
-    <Name>Naledi</Name>
+    <Name>NalediTest</Name>
     <Surname>Dlamini</Surname>
     <CellphoneNumber>0670908230</CellphoneNumber>
+  </User>
+  <User>
+    <Id>417</Id>
+    <Name>Naledi</Name>
+    <Surname>van der Merwe</Surname>
+    <CellphoneNumber>0712345678</CellphoneNumber>
+  </User>
+  <User>
+    <Id>268</Id>
+    <Name>Thaboghj</Name>
+    <Surname>Molefe</Surname>
+    <CellphoneNumber>0727766554</CellphoneNumber>
   </User>
 </Users>

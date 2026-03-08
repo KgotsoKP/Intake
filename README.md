@@ -11,13 +11,17 @@ Test 1 : A  simple Blazor application to capture,search, list, edit, and delete 
 
 ![e4-intake-demo](https://github.com/user-attachments/assets/6f1c8d9d-2d66-4d95-831c-e83b9ca0108b)
 
-
 **How it Works:**
 
 1. **Search** — Type a keyword into the search bar and hit search. The user list filters to show matching results.
 2. **Add** — Click the **Add** button to open a dialog. Fill in name, surname, and cellphone number. The form validates input before saving the new user to the XML file.
 3. **Edit** — Click the ✏️ icon on any row to open the edit dialog with the user's current details pre-filled. Update the fields and click **Save** to persist changes.
 4. **Delete** — Click the 🗑️ icon on any row to remove that user from the XML file.
+
+## Assumptions & Business Rules
+
+**ID Generation**: User IDs are generated using random numbers. I'm aware this introduces a risk of collision. In a production application, I would use GUIDs instead as they eliminate collision concerns and have the added benefit of being non-sequential, meaning users cannot predict or enumerate other users' IDs.
+**Cellphone Number Uniqueness** : Cellphone numbers are treated as unique per user. This is based on the fact that South African mobile numbers are inherently unique to an individual. Name and surname are not subject to uniqueness checks as it's possible for multiple people to share the same name and surname. The application is scoped to South African numbers only, which is also why internationalization (e.g., country codes or international formatting) was not implemented.
 
 ## Decisions & Technical Considerations
 
