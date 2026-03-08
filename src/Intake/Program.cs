@@ -1,10 +1,19 @@
+using Blazor.Sonner.Extensions;
 using Intake.Components;
+using Intake.Repository;
+using Intake.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<IUserRepository>(provider => 
+    new UserRepository("Data/Users.xml"));
+
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddSonner();
 
 var app = builder.Build();
 

@@ -1,0 +1,82 @@
+﻿@using Intake.Models
+@using Intake.Components.UI
+
+@if (Users == null)
+{
+    <div class="h-[36vh] flex items-center justify-center">
+        <p class="text-sm text-gray-400">Loading Users...</p>
+    </div>
+}
+else if (!Users.Any())
+{
+    <div class="h-[36vh] w-full flex items-center justify-center">
+        <p class="text-sm text-gray-400">No users found.</p>
+    </div>
+}
+else
+{
+    <div class="relative">
+        <table class="w-full table-fixed">
+            <thead>
+            <tr>
+                <th class="text-left text-[11px] font-medium tracking-widest uppercase text-gray-400 px-4 py-2.5 w-16">
+                    #
+                </th>
+                <th class="text-left text-[11px] font-medium tracking-widest uppercase text-gray-400 px-4 py-2.5">Name
+                </th>
+                <th class="text-left text-[11px] font-medium tracking-widest uppercase text-gray-400 px-4 py-2.5">
+                    Surname
+                </th>
+                <th class="text-left text-[11px] font-medium tracking-widest uppercase text-gray-400 px-4 py-2.5">Cell
+                </th>
+                <th class="text-right text-[11px] font-medium tracking-widest uppercase text-gray-400 px-4 py-2.5 w-24"></th>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="max-h-[36vh] overflow-y-auto">
+            <table class="w-full table-fixed">
+                <tbody>
+                @foreach (var user in Users)
+                {
+                    <tr class="border-t border-gray-100 transition-colors hover:bg-gray-50/60">
+                        <td class="px-4 text-xs text-gray-300 w-16 font-mono">@user.Id</td>
+                        <td class="px-4 text-sm text-gray-800 font-medium">@user.Name</td>
+                        <td class="px-4 text-sm text-gray-600">@user.Surname</td>
+                        <td class="px-4 text-sm text-gray-600 font-mono tracking-tight">@user.CellphoneNumber</td>
+                        <td class="px-4 text-right w-24">
+                        <span class="inline-flex gap-1">
+                            <button type="button"
+                                    class="p-1.5 rounded-md hover:bg-gray-100 transition-colors"
+                                    @onclick="() => EditUser(user.Id)"
+                                    title="Edit">
+                                <i class="bi bi-pencil" style="font-size: 0.85rem; color: #9ca3af;"></i>
+                            </button>
+                            <button type="button"
+                                    class="p-1.5 rounded-md hover:bg-red-50 transition-colors"
+                                    @onclick="() => DeleteUser(user.Id)"
+                                    title="Delete">
+                                <i class="bi bi-trash3" style="font-size: 0.85rem; color: #d1d5db;"></i>
+                            </button>
+                        </span>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <p class="text-[11px] text-gray-300 font-medium tracking-wide py-3 text-center">
+            @Users.Count() users
+        </p>
+    </div>
+}
+
+@code {
+    [Parameter] public EventCallback<int> OpenEditUserDialog { get; set; }
+    [Parameter] public EventCallback<int> DeleteUserAction { get; set; }
+    [Parameter] public List<User?> Users { get; set; }
+
+    private async Task DeleteUser(int userId) => await DeleteUserAction.InvokeAsync(userId);
+    private async Task EditUser(int userId) => await OpenEditUserDialog.InvokeAsync(userId);
+}

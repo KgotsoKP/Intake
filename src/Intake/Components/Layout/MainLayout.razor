@@ -1,18 +1,19 @@
 ﻿@inherits LayoutComponentBase
+@using Blazor.Sonner
+@using Blazor.Sonner.Common
+@using Blazor.Sonner.Services
+@inject ToastService Toast
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+<div class="page bg-black p-4 h-screen">
+    <main class="bg-gray-100 rounded-2xl w-full h-full flex flex-col items-center justify-center">
+        <article class="mb-8">
             @Body
         </article>
+        
+        <p class="px-32 text-xs text-muted text-balance text-center mt-8 justify-content-end">
+            Test1 : A simple capture form to capture multiple users names, surnames and cellphone numbers and store the data in an XML file.
+            You should be able to list all the users and edit/delete an individual user. Bonus points for validation, UI, OO principles.
+        </p>
     </main>
 </div>
 
@@ -21,3 +22,5 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+<Toaster RichColors="true" Position="ToastPosition.BottomCenter" Offset="new Offset(48)" CloseButton="true"/>
